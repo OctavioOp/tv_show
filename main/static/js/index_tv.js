@@ -1,11 +1,25 @@
 $(document).ready(function () {
-    console.log('funciona');
-  //  $('#sub').on('submit', function () {
+  
+  $('#delete').on('click', function () {
+    swal({
+      title: 'Are you sure?',
+      text: 'you will lost the info forever',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    }).then((willdelete)=>{
+      if(willdelete){
+        swal({
+          title: 'Poof! your kill your data',
+          icon: 'success'
+        })
+      }
+      else{
+        swal({
+          title: 'uff! your data is safe',
+        })
 
-        // {% if messages %}
-        // {% for message in messages %}
-        //     TransformStream.alert('{message}')
-        // {% endfor %}
-        // {% endif %}
- //   })
+      }
+    })
+  })
 })

@@ -43,6 +43,7 @@ def edit_show(request, id_show):
             '2edit': edit_show,
             'time_str': time_str
         }
+        return render(request,'form_edit.html',context)
        
     else:
         edit_show = tv_show.objects.get(id=id_show)
