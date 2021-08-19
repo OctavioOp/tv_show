@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+
+
+{% block content %}
+<div class="container">
+    <h1>All your favorites programs</h1>
+    <h6>in a one page/place</h6>
+    <hr>
+
+    <table class="table table-striped">
+        <thead class="table-success">
+            <tr>
+                <th class="col">ID</th>
+                <th class="col">Title</th>
+                <th class="col">Network</th>
+                <th class="col">Release Date</th>
+                <th class="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for tv in tv%}
+            <tr>
+                <td>{{tv.id}}</td>
+                <td>{{tv.title}}</td>
+                <td>{{tv.network}}</td>
+                <td>{{tv.release_date}}</td>
+                <td><a href="edit_show/{{tv.id}}" class="btn btn-warning"><i class="far fa-edit"></i></i></a> <a
+                        href="delete_show/{{tv.id}}" class="btn btn-danger">
+                        <i class="far fa-trash-alt"></i></a>
+                    <a href="show_tv/{{tv.id}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
+    <a href="/new_show" class="btn btn-success">Add a New Show</a>
+</div>
+{% endblock %}

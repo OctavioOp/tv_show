@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-5"><i class="fas fa-tv"></i> Tv Show: {{show.id}}</h2>
+    <h6 class="mb-3"><i class="far fa-flag"></i> Title: {{show.title}}</h6>
+    <h6 class="mb-3"><i class="fas fa-server"></i> Network: {{show.network}}</h6>
+    <h6 class="mb-3"><i class="fas fa-table"></i> Release Date: {{show.release_date}}</h6>
+    <h6 class="mb-3"><i class="far fa-sticky-note"></i> Description: {{show.desc}}</h6>
+
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <img src="{{show.zelda}}" alt="error404" width="auto" height="300rem">
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
