@@ -1,6 +1,6 @@
 $(document).ready(function () {
   
-  $('#delete').on('click', function () {
+  $('.delete').on('click', function () {
     swal({
       title: 'Are you sure?',
       text: 'you will lost the info forever',
