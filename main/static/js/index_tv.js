@@ -1,5 +1,6 @@
 $(document).ready(function () {
   
+  toastr["warning"]('caca', "Error")
   $('.delete').on('click', function () {
     swal({
       title: 'Are you sure?',
@@ -21,5 +22,12 @@ $(document).ready(function () {
 
       }
     })
+  })
+
+  $('#sub').on('submit',function(){
+    valueError = $('#sub').val()
+    
+
+
   })
 })

@@ -18,14 +18,21 @@ def create_new_show(request):
     if request.method == 'GET':
         return render(request,'form.html')
     else:
-        title1 = request.POST['title']
-        network = request.POST['network']
-        release_date = request.POST['date_show']
-        desc = request.POST['desc']
-        new_show = tv_show.objects.create(
-            title=title1, network=network, release_date=release_date, desc=desc)
-        messages.success(request,'the show has been created!')
-        return redirect('/home')
+        errors = tv_show.objects.basic_validator(request.POST)
+        if len(errors)>0:
+            for key,value in errors.items():
+                messages.error(request,value)
+            return redirect('/new_show')
+        
+        else: 
+            title1 = request.POST['title']
+            network = request.POST['network']
+            release_date = request.POST['date_show']
+            desc = request.POST['desc']
+            new_show = tv_show.objects.create(
+                title=title1, network=network, release_date=release_date, desc=desc)
+            messages.success(request,'the show has been created!')
+            return redirect('/home')
 
 
 def delete_show(requets, id_show):
