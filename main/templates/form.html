@@ -33,11 +33,12 @@
       </form>
     </div>
     <div class="col-4"></div>
-    <script>
-      {% for message in messages %}
-      toastr.{{ message.tags }}('{{ message }}');
-      {% endfor %}
-    </script>
+
   </div>
+  <script>
+    {% for message in messages %}
+    toastr.{{ message.tags }} ('{{ message }}');
+    {% endfor %}
+  </script>
 </div>
 {% endblock %}

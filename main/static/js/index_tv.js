@@ -1,7 +1,7 @@
 $(document).ready(function () {
   
   
-  $('.delete').on('click', function (e) {
+  $('#delete').on('click', function (e) {
     e.prevenDefault()
     swal({
       title: 'Are you sure?',
