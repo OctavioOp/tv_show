@@ -10,15 +10,15 @@
         <h4>Add a new Show</h4>
         <div class="mb-3">
           <label for="title">Title</label>
-          <input type="text" placeholder="title" name="title" >
+          <input type="text" placeholder="title" name="title">
         </div>
         <div class="mb-3">
           <label for="network">Network</label>
-          <input type="text" placeholder="network" name="network" >
+          <input type="text" placeholder="network" name="network">
         </div>
         <div class="mb-3">
           <label for="">Release Date</label>
-          <input type="date" name="date_show" max="2022-12-31" >
+          <input type="date" name="date_show" max="2022-12-31">
         </div>
         <div class="mb-3">
           <label for="">Link photo</label>
@@ -29,17 +29,15 @@
           <textarea style="width: 18rem;" name="desc" rows="5" placeholder="add a description"></textarea>
         </div>
 
-        <button id="sub" type="submit" class="btn btn-success" value="{{message}}">Submit</button>
+        <button id="sub" type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>
     <div class="col-4"></div>
-    {% if messages %}
-    <ul class="messages">
+    <script>
       {% for message in messages %}
-      <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+      toastr.{{ message.tags }}('{{ message }}');
       {% endfor %}
-    </ul>
-    {% endif %}
+    </script>
   </div>
 </div>
 {% endblock %}

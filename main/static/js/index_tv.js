@@ -1,7 +1,8 @@
 $(document).ready(function () {
   
-  toastr["warning"]('caca', "Error")
-  $('.delete').on('click', function () {
+  
+  $('.delete').on('click', function (e) {
+    e.prevenDefault()
     swal({
       title: 'Are you sure?',
       text: 'you will lost the info forever',
@@ -24,10 +25,5 @@ $(document).ready(function () {
     })
   })
 
-  $('#sub').on('submit',function(){
-    valueError = $('#sub').val()
-    
-
-
-  })
+  
 })

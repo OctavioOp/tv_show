@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.db.models.base import Model
+from datetime import date
 
 # Create your models here.
 class TvManager(models.Manager):
@@ -11,9 +12,9 @@ class TvManager(models.Manager):
             errors['title'] = "Show name should be at least 2 characters"
         if len(postData['network'])<3:
             errors['network'] = "Show network should be at least 2 characters"
-        if len(postData['desc'])<10:
-           errors['desc'] = "Show network should be at least 10 characters"
-
+        if len(postData['desc']) != 0:
+            if len(postData['desc'])<10:
+                errors['desc'] = "Show description should be at least 10 characters"
         return errors
 
 
