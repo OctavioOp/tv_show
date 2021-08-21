@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.core.checks import messages
 from django.db import models
 from django.db.models.base import Model
 from datetime import date, datetime
@@ -12,10 +13,10 @@ class TvManager(models.Manager):
 
         if len(postData['title']) < 2:
             errors['title'] = "Show name should be at least 2 characters"
-        elif len(postData['title']) > 2 and tv_show.objects.all() != None:
+        '''elif len(postData['title']) > 2:
             incoming_title= postData['title']
             if tv_show.objects.get(title=incoming_title):
-                errors['title']= 'Title already exist'
+                errors['title']= 'Title already exist'''
             
             
         if len(postData['network']) < 3:
