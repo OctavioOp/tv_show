@@ -58,13 +58,21 @@ def edit_show(request, id_show):
         return render(request, 'form_edit.html', context)
 
     else:
-        edit_show = tv_show.objects.get(id=id_show)
+        
 
         title_recieve = request.POST['title']
         network_recieve = request.POST['network']
         release_recieve = request.POST['date_show']
         desc_recieve = request.POST['desc']
         zelda_recieve = request.POST['zelda']
+
+        errors = tv_show.objects.basic_validator(request.POST)
+
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect(f'../edit_show/{id_show}')
+        edit_show = tv_show.objects.get(id=id_show)
 
         edit_show.title = title_recieve
         edit_show.network = network_recieve
