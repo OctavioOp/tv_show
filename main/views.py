@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, HttpResponse
 from django.db.models.base import Model
 from django.shortcuts import redirect, render, HttpResponse
@@ -37,6 +38,13 @@ def delete_show(requets, id_show):
     get2delete = tv_show.objects.get(id=id_show)
     get2delete.delete()
     return redirect('/home')
+
+
+def delete_by_ajax(requets, id_show):
+    if request.method == 'POST':
+        get2delete = tv_show.objects.get(id=id_show)
+        get2delete.delete()
+        return redirect('/home')
 
 
 def edit_show(request, id_show):

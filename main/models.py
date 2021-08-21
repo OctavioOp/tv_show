@@ -12,7 +12,7 @@ class TvManager(models.Manager):
 
         if len(postData['title']) < 2:
             errors['title'] = "Show name should be at least 2 characters"
-        elif len(postData['title']) > 2:
+        elif len(postData['title']) > 2 and tv_show.objects.all() != None:
             incoming_title= postData['title']
             if tv_show.objects.get(title=incoming_title):
                 errors['title']= 'Title already exist'
