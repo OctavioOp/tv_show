@@ -31,20 +31,20 @@ def create_new_show(request):
             new_show = tv_show.objects.create(
                 title=title1, network=network, release_date=release_date, desc=desc)
             messages.success(request, 'the show has been created!')
-            return redirect('/home')
+            return redirect('/shows')
 
 
 def delete_show(requets, id_show):
     get2delete = tv_show.objects.get(id=id_show)
     get2delete.delete()
-    return redirect('/home')
+    return redirect('/shows')
 
 
 def delete_by_ajax(requets, id_show):
     if request.method == 'POST':
         get2delete = tv_show.objects.get(id=id_show)
         get2delete.delete()
-        return redirect('/home')
+        return redirect('/shows')
 
 
 def edit_show(request, id_show):
@@ -81,7 +81,7 @@ def edit_show(request, id_show):
         edit_show.zelda = zelda_recieve
         edit_show.save()
         messages.success(request, 'the show has been edited!')
-        return redirect('/home')
+        return redirect('/shows')
 
 
 def show_show(request, tv_id):
@@ -97,4 +97,4 @@ def search_show(request):
     title2find = title2find.capitalize()
     find_show = tv_show.objects.get(title=title2find)
     id_show = find_show.id
-    return redirect(f'home/show_tv/{id_show}')
+    return redirect(f'shows/show_tv/{id_show}')
