@@ -54,6 +54,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/new_show">Create a new show</a>
                     </li>
+                    <li>
+                        <a href="/logout" class="btn btn-danger">Cerrar sesion</a>
+                    </li>
+                    
+                    
                 </ul>
                 <form class="d-flex" action="/find_show" method="POST">
                     {% csrf_token %}
@@ -66,8 +71,8 @@
     </nav>
     {% block content %}
     <div class="container">
-
-        <h1>All your favorites programs</h1>
+        <h4> hi {{ request.session.user.name }}</h4>
+        <h1 class="my-3">All your favorites programs</h1>
         <h6>in a one page/place</h6>
         <hr>
 

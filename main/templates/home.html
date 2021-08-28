@@ -25,10 +25,11 @@
                 <td>{{tv.title}}</td>
                 <td>{{tv.network}}</td>
                 <td>{{tv.release_date}}</td>
-                <td><a href="../shows/edit_show/{{tv.id}}" class="btn btn-warning"><i class="far fa-edit"></i></i></a> <a
-                        href="delete_show/{{tv.id}}" class="btn btn-danger">
+                <td><a href="../shows/edit_show/{{tv.id}}" class="btn btn-warning"><i class="far fa-edit"></i></i></a>
+                    <a href="delete_show/{{tv.id}}" class="btn btn-danger">
                         <i class="far fa-trash-alt"></i></a>
-                    <button class="btn btn-danger delete" value="{{tv.id}}"> <i class="far fa-trash-alt"></i> borrar</button>
+                    <button class="btn btn-danger delete" value="{{tv.id}}"> <i class="far fa-trash-alt"></i>
+                        borrar</button>
                     <a href="show_tv/{{tv.id}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
                 </td>
             </tr>
@@ -37,5 +38,28 @@
     </table>
 
     <a href="/new_show" class="btn btn-success">Add a New Show</a>
+
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        {% for message in messages %}
+        toastr.{{message.tags}} ('{{ message }}');
+        {% endfor %}
+    </script>
 </div>
 {% endblock %}

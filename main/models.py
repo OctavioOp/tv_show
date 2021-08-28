@@ -3,6 +3,10 @@ from django.core.checks import messages
 from django.db import models
 from django.db.models.base import Model
 from datetime import date, datetime
+import re
+
+from django.db.models.fields import CharField, DateTimeField, EmailField
+from django.urls.resolvers import URLPattern
 
 # Create your models here.
 
@@ -44,3 +48,28 @@ class tv_show(models.Model):
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
     objects = TvManager()
+
+class UserManager(models.Manager):
+    def basic_validator(self,postData):
+        errors = {}
+        NUM_REGEX = re.compile('[0-9]')
+        if len(postData['name']) < 2:
+            errors['name'] = 'name needs more than 3 letters'
+        if NUM_REGEX.match(postData['name']):
+            errors['name'] = 'only letters are allowed'
+        if len(postData['password']) < 8:
+            errors['password'] = 'Password has 8 characters'
+        if postData['password'] != postData['password_confirm']:
+            errors['password']= "Passwords doesn't match"
+        return errors
+
+
+class User(models.Model):
+    name = CharField(max_length=255)
+    email = EmailField()
+    password = CharField(max_length=255)
+    avatar = CharField(default='https://www.amongusavatarcreator.com/assets/img/main/icon.png',max_length=255)
+    birthdat = DateTimeField(default='2000-11-02')
+    created_at = DateTimeField(auto_now_add=True)
+    updated_at = DateTimeField(auto_now=True)
+    objects = UserManager()
