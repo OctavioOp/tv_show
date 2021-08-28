@@ -97,11 +97,15 @@ def show_show(request, tv_id):
 
 
 def search_show(request):
-    title2find = request.POST['title']
-    title2find = title2find.capitalize()
-    find_show = tv_show.objects.get(title=title2find)
-    id_show = find_show.id
-    return redirect(f'shows/show_tv/{id_show}')
+    try:
+        title2find = request.POST['title']
+        title2find = title2find.capitalize()
+        find_show = tv_show.objects.get(title=title2find)
+        id_show = find_show.id
+        return redirect(f'shows/show_tv/{id_show}')
+    except:
+        messages.error(request,'titulo no encontrado')
+        return redirect('/shows')
 
 
 def signup(request):
