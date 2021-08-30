@@ -3,10 +3,11 @@ from django.shortcuts import render, HttpResponse
 from django.db.models.base import Model
 from django.shortcuts import redirect, render, HttpResponse
 from .models import tv_show, User
+from .decorators import login_required
 from django.contrib import messages
 import bcrypt
 
-
+@login_required
 def home(request):
     tv_shows = tv_show.objects.all()
     context = {
@@ -14,7 +15,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-
+@login_required
 def create_new_show(request):
     if request.method == 'GET':
         return render(request, 'form.html')
@@ -37,21 +38,21 @@ def create_new_show(request):
             messages.success(request, 'the show has been created!')
             return redirect('/shows')
 
-
+@login_required
 def delete_show(request, id_show):
     get2delete = tv_show.objects.get(id=id_show)
     get2delete.delete()
     messages.info(request, 'the show has been deleted!')
     return redirect('/shows')
 
-
+@login_required
 def delete_by_ajax(request, id_show):
     if request.method == 'POST':
         get2delete = tv_show.objects.get(id=id_show)
         get2delete.delete()
         return redirect('/shows')
 
-
+@login_required
 def edit_show(request, id_show):
     if request.method == 'GET':
         edit_show = tv_show.objects.get(id=id_show)
@@ -87,7 +88,7 @@ def edit_show(request, id_show):
         messages.warning(request, 'the show has been edited!')
         return redirect('/shows')
 
-
+@login_required
 def show_show(request, tv_id):
     show = tv_show.objects.get(id=tv_id)
     context = {
@@ -95,7 +96,7 @@ def show_show(request, tv_id):
     }
     return render(request, 'show_tv.html', context)
 
-
+@login_required
 def search_show(request):
     try:
         title2find = request.POST['title']
